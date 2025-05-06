@@ -94,7 +94,7 @@ public class Quiz3 extends AppCompatActivity {
             @Override
             public void onFinish() {
                 timerTextView.setText("Temps écoulé !");
-                Toast.makeText(Quiz3.this, "Temps écoulé !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Quiz3.this, "Temps écoulé!", Toast.LENGTH_SHORT).show();
                 goToNextQuiz();
             }
         }.start();
@@ -156,7 +156,7 @@ public class Quiz3 extends AppCompatActivity {
                     .addOnSuccessListener(faces -> {
                         if (faces.size() > 1) {
                             Toast.makeText(Quiz3.this, "Triche détectée ! Plus d’un visage présent.", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Quiz3.this, DetectionActivity.class);
+                            Intent intent = new Intent(Quiz3.this,  UserProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
@@ -192,7 +192,7 @@ public class Quiz3 extends AppCompatActivity {
             isFirstStart = false; // ✅ Ignore la 1ʳᵉ fois
         } else if (userLeftApp) {
             Toast.makeText(this, "Triche détectée : vous avez quitté le quiz.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(Quiz3.this, DetectionActivity.class);
+            Intent intent = new Intent(Quiz3.this,  UserProfileActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

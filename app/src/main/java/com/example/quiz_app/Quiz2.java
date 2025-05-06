@@ -153,7 +153,7 @@ public class Quiz2 extends AppCompatActivity {
         if (userLeftApp && !isActivityFinished) { //  éviter si déjà fini
             Toast.makeText(this, "Triche détectée : vous avez quitté le quiz.", Toast.LENGTH_LONG).show();
             isActivityFinished = true; // marquer comme terminé
-            Intent intent = new Intent(Quiz2.this, DetectionActivity.class);
+            Intent intent = new Intent(Quiz2.this, UserProfileActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
@@ -209,9 +209,9 @@ public class Quiz2 extends AppCompatActivity {
             FaceDetection.getClient(options).process(image)
                     .addOnSuccessListener(faces -> {
                         if (faces.size() > 1 && !isActivityFinished) { // ✅ éviter si déjà fini
-                            Toast.makeText(Quiz2.this, "Triche détectée ! Plus d’un visage présent.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Quiz2.this, "Triche détectée! Plus d’un visage présent.", Toast.LENGTH_SHORT).show();
                             isActivityFinished = true; // ✅ marquer comme terminé
-                            Intent intent = new Intent(Quiz2.this, DetectionActivity.class);
+                            Intent intent = new Intent(Quiz2.this,  UserProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();

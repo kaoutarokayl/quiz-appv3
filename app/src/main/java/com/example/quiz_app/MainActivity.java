@@ -8,10 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+// Retire EdgeToEdge si tu ne l'utilises pas ou si ça cause des soucis
+// import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser; // Ajout de l'import
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,10 +25,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+        // EdgeToEdge.enable(this); // Retire si non nécessaire
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
+
+        // Vérifier si un utilisateur est déjà connecté
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // Si oui, rediriger directement vers UserProfileActivity
+            startActivity(new Intent(MainActivity.this, UserProfileActivity.class));
+            finish(); // Terminer MainActivity pour empêcher le retour
+            return;   // Arrêter l'exécution de onCreate ici
+        }
 
         etlogin = findViewById(R.id.etLogin);
         etPassword = findViewById(R.id.etPassword);
@@ -44,15 +55,12 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // 🔐 Connexion via Firebase
                 mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                // Afficher un message de confirmation après connexion
-                                Toast.makeText(getApplicationContext(), "La caméra est activée pour la détection de fraude", Toast.LENGTH_SHORT).show();
-
-                                // Lancer l'activité de détection après la connexion
-                                startActivity(new Intent(MainActivity.this, DetectionActivity.class));
+                                Toast.makeText(getApplicationContext(), "Connexion réussie!", Toast.LENGTH_SHORT).show();
+                                // NOUVEAU: Lancer l'activité de profil utilisateur
+                                startActivity(new Intent(MainActivity.this, UserProfileActivity.class));
                                 finish();  // Ferme l'activité de connexion
                             } else {
                                 Toast.makeText(getApplicationContext(), "Login failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -65,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Register.class));
+                // Ne pas 'finish()' ici pour permettre le retour à l'écran de login depuis Register.
             }
         });
     }

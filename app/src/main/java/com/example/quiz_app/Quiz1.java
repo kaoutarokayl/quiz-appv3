@@ -149,7 +149,7 @@ public class Quiz1 extends AppCompatActivity {
                     .addOnSuccessListener(faces -> {
                         if (faces.size() > 1) {
                             showAlert("Triche détectée", "Plusieurs visages détectés, redirection...");
-                            Intent intent = new Intent(Quiz1.this, DetectionActivity.class);
+                            Intent intent = new Intent(Quiz1.this,  UserProfileActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
                             finish();
@@ -190,7 +190,7 @@ public class Quiz1 extends AppCompatActivity {
         super.onStart();
         if (userLeftApp) {
             Toast.makeText(this, "Triche détectée : vous avez quitté le quiz.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(Quiz1.this, DetectionActivity.class);
+            Intent intent = new Intent(Quiz1.this,  UserProfileActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

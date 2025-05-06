@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:gravity="center_vertical"
+    android:background="#FFFFFF"
+    tools:context=".UserProfileActivity">
+
+    <ImageView
+        android:id="@+id/ivUserProfileLogo"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/logoo"
+    android:contentDescription="Logo de l'application"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="32dp"
+    android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/tvWelcomeUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivUserProfileLogo"
+        android:layout_centerHorizontal="true"
+        android:text="Bienvenue !"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tvUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvWelcomeUser"
+        android:layout_centerHorizontal="true"
+        android:text="email@example.com"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="40dp"/>
+
+    <Button
+        android:id="@+id/btnStartQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUserEmail"
+        android:text="Commencer le Quiz"
+        android:padding="14dp"
+        android:textAllCaps="false"
+        android:backgroundTint="#4CAF50"
+    android:textColor="#FFFFFF"
+    android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnLogoutUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnStartQuiz"
+        android:text="Se déconnecter"
+        android:padding="14dp"
+        android:textAllCaps="false"
+        android:backgroundTint="#F44336"
+    android:textColor="#FFFFFF"/>
+
+</RelativeLayout>
